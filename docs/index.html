@@ -131,15 +131,18 @@
             </div>
             <div id="main">
                 <div class="panel">
-                    Welcome to AlphaDex. <b>Are you bullish or bearish on CORE-ETH? Stake WETH to speculate.</b> Don't stake too much as we are still testing this contract.
+                    AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, similar to a binary option settled by contract.
                 </div>
                 <div class="panel">
+                    <b>Are you bullish or bearish on CORE-ETH? Stake WETH to speculate.</b> Don't stake too much as we are still testing this contract.<br><br>
                     <div class="flexbox">
                         <div>Target market: </div>
                         <div><select class="input_market" size="1" style="width: 200px"></select></div>
                         <!-- <div><button class="button" style="flex:1" id="trade_uniswap">Trade on uniswap</button></div> -->
+                        <div>Current price: <span class="price_now">?</span> ETH</div>
                         <div><button class="button" style="flex:1" id="sync_market">Sync contract with market & start a new round</button></div>
                     </div><br>
+                    <div class="div_chart"></div><br>
                     <table id="table_trade" style="width: 100%">
                         <thead style="font-weight: bold;">
                             <tr>
@@ -194,15 +197,15 @@
                         <input type="radio" name="stake_opinion" value="0">&nbsp;&nbsp;🐻 Bearish
                     </div>
                     <br><br>
-                    <div class="input_wrap"><input placeholder="stake amount" class="input stake_amt" style="width: 120px"></div>
-                    <div><button class="button" id="add_stake">Add stake</button></div>
+                    <div class="input_wrap"><input placeholder="amount" class="input stake_amt" style="width: 120px"></div>
+                    <div><button class="button" id="add_stake">Stake WETH</button></div>
                     <br><br>
                     <div>You have <span id="wallet_amt">?</span> WETH in MetaMask, <span id="vault_amt">?</span> WETH in Vault.</div>
                 </div>
                 <div class="mybox panel">
                     <div><span>Deposit <span id="stake_token_name">?</span> in AlphaDex Vault to save gas: </span></div>
                     <br><br>
-                    <div class="input_wrap"><input placeholder="vault amount" class="input vault_amt" style="width: 120px"></div>
+                    <div class="input_wrap"><input placeholder="amount" class="input vault_amt" style="width: 120px"></div>
                     <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
                     <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
                 </div>
@@ -228,6 +231,7 @@
         clicky_site_ids.push(101285073);
     </script>
     <script async src="//static.getclicky.com/js"></script>
+    <script async src="js/lightweight-charts.standalone.production.js"></script>
 </body>
 
 </html>
