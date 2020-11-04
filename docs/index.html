@@ -75,6 +75,15 @@
         input[type='radio'] {
             transform: scale(2);
         }
+
+        .unselectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
 </head>
 
@@ -177,6 +186,10 @@
                             <span>Currently a round = <span id="market_epoch_period">?</span>. Next round starts after <span id="next_round_time">?</span>. Current commission = <span id="fee_percent">?</span> % (only charged on profits).</span>
                         </div>
                     </div>
+                </div>
+                <div style="margin: 0 auto; text-align: center;" id="help_imgs">
+                    <br><br><br><br><br><a style="margin-right: 3em; cursor: pointer;" id="help_imgs_prev" class="unselectable">[prev]</a><b>Click the image for a tutorial on AlphaDex:</b><a style="margin-left: 3em; cursor: pointer;" id="help_imgs_next" class="unselectable">[next]</a>
+                    <br><br><img src="help/1.png" class="unselectable" style="max-width: 100%; cursor: pointer;" id="help_imgs_img"><br><br><br><br>
                 </div>
                 <div><span id="contract_addr"></span> &nbsp; <a href="AlphaSwap-Draft.pdf" target="_blank">[AlphaDex Tech Report Draft]</a> &nbsp; <a href="https://www.kitten.finance" target="_blank">[Kitten.Finance]</a></div>
             </div>
