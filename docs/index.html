@@ -192,6 +192,7 @@
                         <div>
                             <span>Currently a round = <span id="market_epoch_period">?</span>. Next round starts after <b><span id="next_round_time">?</span></b>. Current commission = <span id="fee_percent">?</span> % (only charged on profits).</span>
                         </div>
+                        <br><br><div>There are always 3 rounds in a day: UTC 0~8, 8~16, 16~24. Sometimes [Sync] is not called at the exact moment, and the start time is delayed, however it won't affect the start time of next round. For example, If [Sync] is called around UTC 1, then this round is 1~8, and next round is still 8~16.</div>
                     </div>
                 </div>
                 <div style="margin: 0 auto; text-align: center;" id="help_imgs">
