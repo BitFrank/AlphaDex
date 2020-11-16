@@ -375,6 +375,7 @@ a:visited {
 
 a:hover {
     color: #f00 !important;
+    cursor: pointer;
 }
 
 .loader {
