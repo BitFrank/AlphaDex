@@ -221,6 +221,7 @@
         <div id="header" class="navbar_wrap">
             <div class="navbar">
                 <p style="font-size: 30px;"><b>Alpha</b>Dex - α</p>
+                <p><a href="https://www.alphadex.org/core_eth/" target="_blank">Switch to CORE-ETH</a></p>
                 <p id="btn_help">Help & FAQ (click again to hide)</p>
                 <p>
                     <a href="javascript:void(0);" onclick="color_theme_switch()">Dark / Light Mode</a>
@@ -234,8 +235,8 @@
                 The usage of AlphaDex is simple:
                 <ul type="round" style="font-weight: bold;">
                     <li>Stake near the end of a round.</li>
-                    <li>At that moment, be a 🐂BULL if you think the price will go up.</li>
-                    <li>At that moment, be a 🐻BEAR if you think the price will go down.</li>
+                    <li>At that moment, be a 🐂BULL if you think the price will go up in the next 2 rounds.</li>
+                    <li>At that moment, be a 🐻BEAR if you think the price will go down in the next 2 rounds.</li>
                     <li>Stake the amount you are willing to risk. There is no need to consider the amount of stakes on both sides.</li>
                 </ul>
                 There are more details in AlphaDex, including "TWAP" and "x+2 vs x+1" stuffs. They are to make sure the process is fair and prevent hackers. You can safely ignore them.
@@ -288,7 +289,7 @@
                         <div>Target market: </div>
                         <div><select class="input_market" size="1" style="width: 200px"></select></div>
                         <!-- <div><button class="button" style="flex:1" id="trade_uniswap">Trade on uniswap</button></div> -->
-                        <div>Current price: <span class="price_now">?</span> ETH</div>
+                        <div>Current price: <span class="price_now">?</span></div>
                         <div><button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button></div>
                     </div>
                     <div class="div_chart" style="margin-top: 0.9em"></div>
@@ -365,7 +366,7 @@
             </div>
             <div id="sidebar" style="display: flex; flex-direction: column;">
                 <div class="mybox panel">
-                    Are you bullish or bearish on CORE-ETH? Stake to speculate.
+                    Are you bullish or bearish on <span class="span_market_desc">market</span>? Stake to speculate.
                     <!-- <div><span>Speculate on <b>TWAP of round <span class="cur_epoch_add_2">?</span> vs round <span class="cur_epoch_add_1">?</span></b> :</span></div> -->
                     <div style="margin-top:1.3em">
                         <input type="radio" name="stake_use_vault" value="0" checked>&nbsp;&nbsp;Stake from MetaMask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -385,6 +386,7 @@
                     <div style="margin-top:1em" class="input_wrap"><input placeholder="amount" class="input vault_amt" style="width: 120px"></div>
                     <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
                     <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
+                    <!-- <div style="margin-top:1em">Swap between ETH and WETH on <a href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div> -->
                 </div>
                 <div class="mybox panel">
                     <div><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
