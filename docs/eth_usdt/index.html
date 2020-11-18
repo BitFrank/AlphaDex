@@ -288,7 +288,7 @@
                         <div>Target market: </div>
                         <div><select class="input_market" size="1" style="width: 200px"></select></div>
                         <!-- <div><button class="button" style="flex:1" id="trade_uniswap">Trade on uniswap</button></div> -->
-                        <div>One round = <span id="market_epoch_period">?</span></div>
+                        <div>Current price: <span class="price_now">?</span></div>
                         <div><button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button></div>
                     </div>
                     <div class="div_chart" style="margin-top: 0.9em"></div>
@@ -296,8 +296,8 @@
                 <div class="panel" id="all_round">
                     <div style="margin-bottom: 0.5em;" class="flexbox all_round_head">
                         <span>🟢 Current round</span>
-                        <span style="font-size: 80%; font-weight: normal; color: #777">Current price: <span class="price_now">?</span></span>
                         <span style="font-size: 80%; font-weight: normal; color: #777">This round ends at <span id="next_round_time">?</span></span>
+                        <span style="font-size: 80%; font-weight: normal; color: #777">One round = <span id="market_epoch_period">?</span></span>
                         <span class="div_read_more_epochs" style="min-height: 50px;">
                             <button class="button read_more_epochs">Loading...</button>
                         </span>
