@@ -89,7 +89,8 @@
             user-select: none;
         }
 
-        #all_round {
+        .xx_winner {
+            cursor: pointer;
         }
         .rounds_level_one {
             margin-top: 0.35em;
@@ -139,6 +140,10 @@
             margin-top: 1em; 
             box-sizing: border-box;            
         }
+
+        /* .xy_winner {
+            display: inline-block;
+        } */
     </style>
     <style id="dark_mode_css">
         body {
@@ -286,8 +291,8 @@
             <div id="main">
                 <div class="panel">
                     <div class="flexbox">
-                        <div>Target market: </div>
-                        <div><select class="input_market" size="1" style="width: 200px"></select></div>
+                        <div>You are speculating on <b class="green"><span class="span_market_desc">?</span></b></div>
+                        <div style="display: none;"><select class="input_market" size="1" style="width: 200px"></select></div>
                         <!-- <div><button class="button" style="flex:1" id="trade_uniswap">Trade on uniswap</button></div> -->
                         <div>Current price: <span class="price_now">?</span></div>
                         <div><button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button></div>
@@ -297,7 +302,7 @@
                 <div class="panel" id="all_round">
                     <div style="margin-bottom: 0.5em;" class="flexbox all_round_head">
                         <span>🟢 Current round</span>
-                        <span style="font-size: 80%; font-weight: normal; color: #777">This round ends at <span id="next_round_time">?</span></span>
+                        <span style="font-size: 80%; font-weight: normal; color: #777"><span id="next_round_time"></span></span>
                         <span style="font-size: 80%; font-weight: normal; color: #777">One round = <span id="market_epoch_period">?</span></span>
                         <span class="div_read_more_epochs" style="min-height: 50px;">
                             <button class="button read_more_epochs">Loading...</button>
