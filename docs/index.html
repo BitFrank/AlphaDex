@@ -276,8 +276,8 @@
                 </ul>
                 <b>On Sync:</b>
                 <ul type="round">
-                    <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the beginning of each round.</b> Traders will call it to fix the price, if they are winning.</li>
-                    <li>Therefore, the XX:X0:00 time might be delayed by a few seconds, because of the time required to [Sync] contract with market.</li>
+                    <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the end of each round.</b> Traders will call it to fix the price, if they are winning.</li>
+                    <li>Therefore, the start time of next round might be delayed by a few minutes, because of the time required to [Sync] contract with market.</li>
                     <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li>
                     <li><b>In the future KittenSwap there's no need to manually sync.</b> There are many more functions in AlphaDex, and KittenSwap will provide the best supports for them.</li>
                 </ul>
