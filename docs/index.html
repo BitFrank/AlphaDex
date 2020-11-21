@@ -141,9 +141,22 @@
             box-sizing: border-box;            
         }
 
+        #simple_ui {
+            font-size: 110%;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1em; 
+            box-sizing: border-box;        
+        }
+
         /* .xy_winner {
             display: inline-block;
         } */
+
+        .navbar a {
+            text-decoration: none;
+        }
     </style>
     <style id="dark_mode_css">
         body {
@@ -226,14 +239,17 @@
         <div id="header" class="navbar_wrap">
             <div class="navbar">
                 <p style="font-size: 30px;"><b>Alpha</b>Dex - α</p>
-                <p><a href="https://www.alphadex.org/core_eth/" target="_blank">Switch to CORE-ETH</a></p>
                 <p id="btn_help">Help & FAQ (click again to hide)</p>
                 <p>
                     <a href="javascript:void(0);" onclick="color_theme_switch()">Dark / Light Mode</a>
                 </p>
-                <p>a <a href="https://www.kitten.finance" target="_blank">kitten.finance</a> product</p>
+                <p><a href="https://www.alphadex.org/core_eth/" target="_blank">Switch to CORE-ETH</a></p>
+                <p>a <a href="https://www.kitten.finance" target="_blank" style="text-decoration: underline;">kitten.finance</a> product</p>
             </div>
         </div>
+        <!-- <div id="simple_ui">
+            <div style="text-align: center; font-size: 180%; margin: 2em 0; letter-spacing: 0.1em;">ETH-USDT</div>
+        </div> -->
         <div id="main-wrap" style="min-height: 88vh;">
             <div id="help" class="panel">
                 AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, which is a bit similar to a binary option settled by contract.<br><br>
@@ -391,7 +407,7 @@
                     <div style="margin-top:1em" class="input_wrap"><input placeholder="amount" class="input vault_amt" style="width: 120px"></div>
                     <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
                     <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
-                    <!-- <div style="margin-top:1em">Swap between ETH and WETH on <a href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div> -->
+                    <div style="margin-top:1em">Swap between ETH and WETH on <a href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div>
                 </div>
                 <div class="mybox panel">
                     <div><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
