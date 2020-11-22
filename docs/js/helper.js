@@ -133,12 +133,15 @@ const _print = function (message, logger) {
 const _my_print = function (message, logger) {
     if (!logger) {
         logger = document.getElementById('log')
+        logger2 = document.getElementById('log2')
     }
 
     for (let i = 0; i < arguments.length; i++) {
         if (arguments[i] instanceof Element) 
             continue
         logger.innerHTML = (new Date()).HHMMSS() + ' ' + arguments[i] + '<br />' + logger.innerHTML
+        if (logger2)
+            logger2.innerHTML = (new Date()).HHMMSS() + ' ' + arguments[i]
     }
 }
 
