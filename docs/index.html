@@ -134,7 +134,8 @@
             line-height: 2;
             display: none;
             font-size: 110%;
-            max-width: 70%;
+            width: 1200px;
+            max-width: 90%;
             margin-left: auto;
             margin-right: auto;
             margin-top: 1em; 
@@ -280,6 +281,59 @@
                 <p>a <a href="https://www.kitten.finance" target="_blank" style="text-decoration: underline;">kitten.finance</a> product</p>
             </div>
         </div>
+        <div id="help" class="panel">
+            AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, which is similar to a binary option market settled by smart contracts.<br><br>
+            The usage of AlphaDex is simple:
+            <ul type="round" style="font-weight: bold;">
+                <li>Stake near the end of a round.</li>
+                <li>At that moment, be a 🐂BULL if you think the price will go up in the next 2 rounds.</li>
+                <li>At that moment, be a 🐻BEAR if you think the price will go down in the next 2 rounds.</li>
+                <li>Stake the amount you are willing to risk. There is no need to consider the amount of stakes on both sides.</li>
+            </ul>
+            There are more details in AlphaDex, including "TWAP" and "x+2 vs x+1" stuffs. They are to make sure the process is fair and prevent hackers. You can safely ignore them.
+            <br>But if you are interested in the details, then this explanation is for you.<br><br>
+            <div class="flexbox">
+                <div style="width: 49%">
+                    <b>On Staking:</b>
+                    <ul type="round">
+                        <li>If you stake in round x, you are speculating on the TWAP of round x+2 vs the TWAP of round x+1. (TWAP means time-weighted average price).</li>
+                        <li>The delay is to prevent price manipulations and flash loan attacks.</li>
+                        <li>If you stake in round x, you can call [Payoff] after round x+2 ends (that is, after round x+3 begins). There'll be two <b>[Payoff] buttons in the table</b> besides your stakes.</li>
+                    </ul>
+                </div>
+                <div style="width: 49%">
+                    <br>For example, assume current round is 09:20 ~ 09:30. In this round, you put your stakes on the difference of:
+                    <br>1. the TWAP between [the last trade before 09:30] and [the last trade before 09:40].
+                    <br>2. the TWAP between [the last trade before 09:40] and [the last trade before 09:50].
+                    <br>If you think 2 > 1, you are 🐂bullish. If you think 1 > 2, you are 🐻bearish. If 1 = 2, then everyone gets their stakes back.
+                </div>
+            </div><br>
+            <div style="margin: 0 auto; text-align: center;">
+                From the chart, we can see this is similar to [price at 9:50] compared with [price at 9:30]. Please read <a href="https://medium.com/@kitten.finance/alphadex-explained-in-images-fe269837b3e1" target="_blank">this essay</a> and <a href="https://medium.com/@kitten.finance/alphadex-explained-in-images-part-2-bed309b6ca0a" target="_blank">this essay</a> to understand why.<br><br>
+                <img src="alphadex_desc.png" style="max-width: 100%;">
+            </div>
+            <br><b>On Payoff:</b> AlphaDex introduces the concept of <b>paired stakes</b>, to limit the risk exposure when there is bull-bear imbalance in stakes.
+            <br>For example:
+            <ul type="round">
+                <li>If there are 100 🐂bullish stakes and 10 🐻bearish stakes, then the amount of paired stakes is 10. So the bulls are only risking 10 stakes.</li>
+                <li>In this case, if 🐂bulls win, 🐂bulls receive 1.1 stakes per stake (note 100 * 1.1 = 110 = 100 + 10).</li>
+                <li>In this case, if 🐂bears win, 🐂bulls can still receive 0.9 stake per stake, while 🐻bears receive 2 stakes per stake (note 100 * 0.9 + 10 * 2 = 110 = 100 + 10).</li>
+                <li>Hence one can feel free to put lots of stakes near the end of a round, without worrying about them taken by tiny stakes on the opposite side.</li>
+            </ul>
+            <b>On Sync:</b>
+            <ul type="round">
+                <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the end of each round.</b> Traders will call it to fix the price, if they are winning.</li>
+                <li>Therefore, the start time of next round might be delayed by a few minutes, because of the time required to [Sync] contract with market.</li>
+                <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li>
+                <li><b>In the future KittenSwap there's no need to manually sync.</b> There are many more functions in AlphaDex, and KittenSwap will provide the best supports for them.</li>
+            </ul>
+            <b>On Contract Safety:</b>
+            <ul type="round">
+                <li>There are two methods to stake in AlphaDex: (1) MetaMask ==[Stake]=> AlphaDex ==[Payoff]=> MetaMask. (2) Vault ==[Stake]=> AlphaDex ==[Payoff]=> Vault.</li>
+                <li>The stake-from-vault method saves gas, because the staked tokens stay in the contract (vault) until you withdraw them, however it will also be more risky if the contract has bug (very unlikely, but still possible).</li>
+                <li>The stake-from-metamask method is safe. Even if the contract has bug, the most you can lose are your stakes in a round.</li>
+            </ul>
+        </div>        
         <div id="simple_ui" style="margin-bottom: 6em;">
             <div style="text-align: center; font-size: 180%; margin: 2em 0; letter-spacing: 0.2em;">
                 Stake WETH to be bullish / bearish on <span class="span_market_desc">(loading...)</span>
@@ -308,59 +362,6 @@
             </div>
         </div>
         <div id="main-wrap" style="min-height: 88vh;">
-            <div id="help" class="panel">
-                AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, which is similar to a binary option market settled by smart contracts.<br><br>
-                The usage of AlphaDex is simple:
-                <ul type="round" style="font-weight: bold;">
-                    <li>Stake near the end of a round.</li>
-                    <li>At that moment, be a 🐂BULL if you think the price will go up in the next 2 rounds.</li>
-                    <li>At that moment, be a 🐻BEAR if you think the price will go down in the next 2 rounds.</li>
-                    <li>Stake the amount you are willing to risk. There is no need to consider the amount of stakes on both sides.</li>
-                </ul>
-                There are more details in AlphaDex, including "TWAP" and "x+2 vs x+1" stuffs. They are to make sure the process is fair and prevent hackers. You can safely ignore them.
-                <br>But if you are interested in the details, then this explanation is for you.<br><br>
-                <div class="flexbox">
-                    <div style="width: 49%">
-                        <b>On Staking:</b>
-                        <ul type="round">
-                            <li>If you stake in round x, you are speculating on the TWAP of round x+2 vs the TWAP of round x+1. (TWAP means time-weighted average price).</li>
-                            <li>The delay is to prevent price manipulations and flash loan attacks.</li>
-                            <li>If you stake in round x, you can call [Payoff] after round x+2 ends (that is, after round x+3 begins). There'll be two <b>[Payoff] buttons in the table</b> besides your stakes.</li>
-                        </ul>
-                    </div>
-                    <div style="width: 49%">
-                        <br>For example, assume current round is 09:20 ~ 09:30. In this round, you put your stakes on the difference of:
-                        <br>1. the TWAP between [the last trade before 09:30] and [the last trade before 09:40].
-                        <br>2. the TWAP between [the last trade before 09:40] and [the last trade before 09:50].
-                        <br>If you think 2 > 1, you are 🐂bullish. If you think 1 > 2, you are 🐻bearish. If 1 = 2, then everyone gets their stakes back.
-                    </div>
-                </div><br>
-                <div style="margin: 0 auto; text-align: center;">
-                    From the chart, we can see this is similar to [price at 9:50] compared with [price at 9:30]. Please read <a href="https://medium.com/@kitten.finance/alphadex-explained-in-images-fe269837b3e1" target="_blank">this essay</a> and <a href="https://medium.com/@kitten.finance/alphadex-explained-in-images-part-2-bed309b6ca0a" target="_blank">this essay</a> to understand why.<br><br>
-                    <img src="alphadex_desc.png" style="max-width: 100%;">
-                </div>
-                <br><b>On Payoff:</b> AlphaDex introduces the concept of <b>paired stakes</b>, to limit the risk exposure when there is bull-bear imbalance in stakes.
-                <br>For example:
-                <ul type="round">
-                    <li>If there are 100 🐂bullish stakes and 10 🐻bearish stakes, then the amount of paired stakes is 10. So the bulls are only risking 10 stakes.</li>
-                    <li>In this case, if 🐂bulls win, 🐂bulls receive 1.1 stakes per stake (note 100 * 1.1 = 110 = 100 + 10).</li>
-                    <li>In this case, if 🐂bears win, 🐂bulls can still receive 0.9 stake per stake, while 🐻bears receive 2 stakes per stake (note 100 * 0.9 + 10 * 2 = 110 = 100 + 10).</li>
-                    <li>Hence one can feel free to put lots of stakes near the end of a round, without worrying about them taken by tiny stakes on the opposite side.</li>
-                </ul>
-                <b>On Sync:</b>
-                <ul type="round">
-                    <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the end of each round.</b> Traders will call it to fix the price, if they are winning.</li>
-                    <li>Therefore, the start time of next round might be delayed by a few minutes, because of the time required to [Sync] contract with market.</li>
-                    <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li>
-                    <li><b>In the future KittenSwap there's no need to manually sync.</b> There are many more functions in AlphaDex, and KittenSwap will provide the best supports for them.</li>
-                </ul>
-                <b>On Contract Safety:</b>
-                <ul type="round">
-                    <li>There are two methods to stake in AlphaDex: (1) MetaMask ==[Stake]=> AlphaDex ==[Payoff]=> MetaMask. (2) Vault ==[Stake]=> AlphaDex ==[Payoff]=> Vault.</li>
-                    <li>The stake-from-vault method saves gas, because the staked tokens stay in the contract (vault) until you withdraw them, however it will also be more risky if the contract has bug (very unlikely, but still possible).</li>
-                    <li>The stake-from-metamask method is safe. Even if the contract has bug, the most you can lose are your stakes in a round.</li>
-                </ul>
-            </div>
             <div id="main">
                 <div class="panel">
                     <div class="flexbox">
