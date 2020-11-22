@@ -70,6 +70,7 @@ async function init_ethers() {
     }
 
     localStorage.setItem('addr', App.YOUR_ADDRESS)
+    _print_force('')
     return App
 }
 
