@@ -89,9 +89,20 @@
             user-select: none;
         }
 
+        .chart_wrap {
+            position: relative;
+        }
+        .chart_legend {
+            position: absolute;
+            left: 16px;
+            top: 10px;
+            z-index: 10;
+        }
+
         .xx_winner {
             cursor: pointer;
         }
+
         .rounds_level_one {
             margin-top: 0.35em;
             border: 1px solid #ddd;
@@ -99,8 +110,9 @@
             border-radius: 6px;
             padding: 0.2em 0.5em;
         }
+
         .right_line {
-            border-right: 1px solid #ddd; 
+            border-right: 1px solid #ddd;
         }
 
         .rounds_level_one div {
@@ -118,14 +130,15 @@
         }
 
         .all_round_head {
-            font-size: 130%; 
-            font-weight: bold; 
-            color: #333; 
+            font-size: 130%;
+            font-weight: bold;
+            color: #333;
         }
 
         .green {
             color: green !important;
         }
+
         .darkred {
             color: darkred !important;
         }
@@ -138,8 +151,8 @@
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 1em; 
-            box-sizing: border-box;            
+            margin-top: 1em;
+            box-sizing: border-box;
         }
 
         #simple_ui {
@@ -148,8 +161,8 @@
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 1em; 
-            box-sizing: border-box;        
+            margin-top: 1em;
+            box-sizing: border-box;
         }
 
         /* .xy_winner {
@@ -159,24 +172,26 @@
         .navbar a {
             text-decoration: none;
         }
+
         .bg_green {
             background-color: #0a0;
         }
+
         .bg_darkred {
             background-color: #a22;
         }
 
-        #simple_stake_bull, #simple_stake_bear {
+        #simple_stake_bull,
+        #simple_stake_bear {
             height: 100px;
             font-size: 135%;
         }
-        
-        #simple_stake_bull:hover
-        {
+
+        #simple_stake_bull:hover {
             background-color: #0e0;
         }
-        #simple_stake_bear:hover
-        {
+
+        #simple_stake_bear:hover {
             background-color: #e00;
         }
 
@@ -190,59 +205,74 @@
             background-color: #222;
             color: #ddd;
         }
+
         #main {
             border-right: 1px solid transparent;
         }
+
         #help {
             background-color: #222;
             color: #ddd;
         }
+
         .panel {
             background-color: #111;
             color: #ddd;
             border-color: #333;
         }
-        a:link, a:visited {
+
+        a:link,
+        a:visited {
             color: #ddd;
         }
+
         .all_round_head {
             color: #aaa;
         }
+
         .rounds_level_one {
             border: 1px solid #333;
         }
+
         .right_line {
-            border-right: 1px solid #333; 
+            border-right: 1px solid #333;
         }
 
         .rounds_level_one span {
             color: #ddd;
-        }        
+        }
+
         #sidebar {
             background-color: #1a1a1a;
             color: #ccc;
         }
+
         .emphasize {
             font-weight: bold;
             color: white;
         }
+
         .button {
             box-shadow: none;
             background-color: #040;
         }
+
         .button:hover {
             background: #090;
-        }        
+        }
+
         .navbar_wrap {
             background-color: #040;
             color: #ddd;
         }
+
         .input {
             background: black;
             box-shadow: none;
             border: 1px solid #333;
             color: #ddd;
         }
+
         table,
         th,
         td {
@@ -252,16 +282,18 @@
         .green {
             color: #0a0 !important;
         }
+
         .darkred {
             color: #c22 !important;
         }
+
         .bg_green {
             background-color: #070;
         }
+
         .bg_darkred {
             background-color: #700;
         }
-        
     </style>
     <script>
         // document.getElementById('dark_mode_css').disabled = true;
@@ -333,14 +365,17 @@
                 <li>The stake-from-vault method saves gas, because the staked tokens stay in the contract (vault) until you withdraw them, however it will also be more risky if the contract has bug (very unlikely, but still possible).</li>
                 <li>The stake-from-metamask method is safe. Even if the contract has bug, the most you can lose are your stakes in a round.</li>
             </ul>
-        </div>        
+        </div>
         <div id="simple_ui" style="margin-bottom: 6em;">
             <div style="text-align: center; font-size: 180%; margin: 2em 0; letter-spacing: 0.2em;">
                 Stake WETH to be bullish / bearish on <span class="span_market_desc">(loading...)</span>
                 <div style="color: #777; font-size: 60%; margin-top: 1em; letter-spacing: 0.1em;">a binary option market settled by smart contracts</div>
             </div>
             <div class="flexbox">
-                <div id="simple_chart" style="margin-top: -0.5em; flex:1"></div>
+                <div class="chart_wrap" style="margin-top: -0.5em; flex:1">
+                    <div class="chart_legend" id="simple_chart_legend">ETH-USDT TWAP</div>
+                    <div id="simple_chart"></div>
+                </div>
                 <div style="flex:0.3; margin-left: 2em">
                     <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br><br>
                     <div class="input_wrap">Stake WETH:<input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt"></div><br><br>
@@ -353,7 +388,8 @@
             <!-- <br><div>
                 Hint:
             </div> -->
-            <br><br><div id="log2"></div>
+            <br><br>
+            <div id="log2"></div>
         </div>
         <div style="border-top: 1px solid #777; border-bottom: 1px solid #777; margin-bottom: 8em;">
             <div class="flexbox" style="padding: 0.5em 30%; font-size: 125%">
@@ -371,7 +407,10 @@
                         <div>Current price: <span class="price_now">?</span></div>
                         <div><button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button></div>
                     </div>
-                    <div class="div_chart" style="margin-top: 0.9em"></div>
+                    <div class="chart_wrap" style="margin-top: 0.9em">
+                        <div class="chart_legend" id="div_chart_legend">ETH-USDT TWAP</div>
+                        <div id="div_chart"></div>
+                    </div>
                 </div>
                 <div class="panel" id="all_round">
                     <div style="margin-bottom: 0.5em;" class="flexbox all_round_head">
@@ -473,7 +512,9 @@
                     <div><span id="market_log_pre"></span><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
                 </div>
                 <div id="log"></div>
-                <div style="background-color: #1a1a1a;"><div id="tlkio" data-channel="AlphaDex-trollbox" data-theme="theme--night" data-nickname="anonymous" style="width:100%;height:600px;"></div></div>
+                <div style="background-color: #1a1a1a;">
+                    <div id="tlkio" data-channel="AlphaDex-trollbox" data-theme="theme--night" data-nickname="anonymous" style="width:100%;height:600px;"></div>
+                </div>
             </div>
         </div>
         <div id="footer">
