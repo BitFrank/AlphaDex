@@ -334,7 +334,7 @@
                     <ul type="round">
                         <li>If you stake in round x, you are speculating on the TWAP of round x+2 vs the TWAP of round x+1. (TWAP means time-weighted average price).</li>
                         <li>The delay is to prevent price manipulations and flash loan attacks.</li>
-                        <li>If you stake in round x, you can call [Payoff] after round x+2 ends (that is, after round x+3 begins). There'll be two <b>[Payoff] buttons in the table</b> besides your stakes.</li>
+                        <li>If you stake in round x, you can call [Payoff] after round x+2 ends (that is, after round x+3 begins). There'll be <b>[Payoff] buttons in the table</b> besides your stakes.</li>
                     </ul>
                 </div>
                 <div style="width: 49%">
@@ -358,17 +358,20 @@
             </ul>
             <b>On Sync:</b>
             <ul type="round">
-                <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the end of each round.</b> Traders will call it to fix the price, if they are winning.</li>
-                <li>Therefore, the start time of next round might be delayed by a few minutes, because of the time required to [Sync] contract with market.</li>
-                <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li>
+                <li>The contract stores uniswap TWAP only when [Sync contract] is called. <b>This only need to happen once at the end of each round.</b></li>
+                <li>If you are winning, you'd like to call [Sync contract] to fix the price.</li>
+                <!-- <li>The start time of next round might be delayed by a few minutes, because of the time required to [Sync] contract with market.</li>
+                <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li> -->
                 <li><b>In the future KittenSwap there's no need to manually sync.</b> There are many more functions in AlphaDex, and KittenSwap will provide the best supports for them.</li>
             </ul>
-            <b>On Contract Safety:</b>
-            <ul type="round">
-                <li>There are two methods to stake in AlphaDex: (1) MetaMask ==[Stake]=> AlphaDex ==[Payoff]=> MetaMask. (2) Vault ==[Stake]=> AlphaDex ==[Payoff]=> Vault.</li>
-                <li>The stake-from-vault method saves gas, because the staked tokens stay in the contract (vault) until you withdraw them, however it will also be more risky if the contract has bug (very unlikely, but still possible).</li>
-                <li>The stake-from-metamask method is safe. Even if the contract has bug, the most you can lose are your stakes in a round.</li>
-            </ul>
+            <div class="vault_only">
+                <b>On Contract Safety:</b>
+                <ul type="round">
+                    <li>There are two methods to stake in AlphaDex: (1) MetaMask ==[Stake]=> AlphaDex ==[Payoff]=> MetaMask. (2) Vault ==[Stake]=> AlphaDex ==[Payoff]=> Vault.</li>
+                    <li>The stake-from-vault method saves gas, because the staked tokens stay in the contract (vault) until you withdraw them, however it will also be more risky if the contract has bug (very unlikely, but still possible).</li>
+                    <li>The stake-from-metamask method is safe. Even if the contract has bug, the most you can lose are your stakes in a round.</li>
+                </ul>
+            </div>
         </div>
         <div id="simple_ui" style="margin-bottom: 6em;">
             <div style="text-align: center; font-size: 180%; margin: 2em 0; letter-spacing: 0.2em;">
@@ -387,7 +390,7 @@
                 </div>
             </div><br><br>
             <div>
-                You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.<span class="buy_weth_txt">&nbsp;&nbsp;&nbsp; <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH" target="_blank">Get WETH on uniswap.</a></span>&nbsp;&nbsp;&nbsp; You win if you correctly predict the general direction of <span class="span_market_desc">?</span> in the next 16 hours.
+                You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.<span class="buy_weth_txt">&nbsp;&nbsp;&nbsp; <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH" target="_blank">Get WETH on uniswap.</a></span>&nbsp;&nbsp;&nbsp; You win if you correctly predict the general direction of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span>.
             </div>
             <!-- <br><div>
                 Hint:
@@ -491,9 +494,11 @@
                 <div class="mybox panel">
                     Are you bullish or bearish on <span class="span_market_desc">market</span>? Stake to speculate.
                     <!-- <div><span>Speculate on <b>TWAP of round <span class="cur_epoch_add_2">?</span> vs round <span class="cur_epoch_add_1">?</span></b> :</span></div> -->
-                    <div style="margin-top:1.3em">
-                        <input type="radio" name="stake_use_vault" value="0" checked>&nbsp;&nbsp;Stake from MetaMask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" name="stake_use_vault" value="1">&nbsp;&nbsp;Stake from Vault
+                    <div class="vault_only">
+                        <div style="margin-top:1.3em">
+                            <input type="radio" name="stake_use_vault" value="0" checked>&nbsp;&nbsp;Stake from MetaMask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="stake_use_vault" value="1">&nbsp;&nbsp;Stake from Vault
+                        </div>
                     </div>
                     <div style="margin-top:1.3em">
                         <input type="radio" name="stake_opinion" value="1" checked>&nbsp;&nbsp;<span class="green">I am 🐂Bullish</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -502,16 +507,16 @@
                     <br>
                     <div class="input_wrap" style="margin-top:1.3em"><input placeholder="amount" class="input stake_amt" style="width: 120px"></div>
                     <div><button class="button" id="add_stake">Stake&nbsp;<span class="span_stake_token">?</span></button></div>
-                    <div style="margin-top:1em">You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask, <span class="vault_amt">?</span> <span class="span_stake_token">?</span> in Vault.</div>
+                    <div style="margin-top:1em">You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask<span class="vault_only">, <span class="vault_amt">?</span> <span class="span_stake_token">?</span> in Vault</span>.</div>
                     <div style="margin-top:1em; color: #777">Stake the amount you'd like to risk. There is no need to consider the amount of stakes on both sides.</div>
                 </div>
-                <div class="mybox panel">
+                <div class="vault_only"><div class="mybox panel">
                     <div><span>Deposit <span id="stake_token_name">?</span> in Vault first, to save gas when staking: </span></div>
                     <div style="margin-top:1em" class="input_wrap"><input placeholder="amount" class="input input_vault_amt" style="width: 120px"></div>
                     <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
                     <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
                     <div style="margin-top:1em; color: #777"><div class="buy_weth_txt">Swap between ETH and WETH on <a style="color: #777" href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div></div>
-                </div>
+                </div></div>
                 <div class="mybox panel">
                     <div><span id="market_log_pre"></span><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
                 </div>
