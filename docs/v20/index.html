@@ -149,7 +149,7 @@
         }
 
         .gray {
-            color: #999;
+            color: #999 !important;
         }
 
         #help {
@@ -456,7 +456,7 @@
                         </div>
                     </div>
                     <!-- <div style="margin-top: 1em; color: #777">Feel free to stake even if you see 0 stake. There will always be stakes when the round is near its end (as many traders will wait till then).</div> -->
-                    <div style="margin-top: 1em; color: #777">If you are on the side with less stakes, your odds is slightly increased.</div>
+                    <div style="margin-top: 1em;" class="gray">If you are on the side with less stakes, or if you stake earlier, your odds is increased. <a href="https://kitten-finance.medium.com/alphadex-v1-0-improving-the-payoff-model-bf5ba0883055" class="gray" target="_blank">Click for formulas</a> (current factor_stake=<span class="factor_stake">?</span>, factor_time=<span class="factor_time">?</span>).</div>
                     <div style="margin-top: 1.3em; margin-bottom: 1.1em;" class="flexbox all_round_head">
                         <span>🔵 Previous rounds</span>
                     </div>
@@ -468,7 +468,7 @@
                             <button class="button read_more_epochs" style="flex:1">Loading...</button>
                         </div>
                         <div>
-                            Commission = <span id="fee_percent">?</span> % (only charged on profits).
+                            Commission = <span class="fee_percent">?</span> % (only charged on profits).
                         </div>
                     </div>
                 </div>
