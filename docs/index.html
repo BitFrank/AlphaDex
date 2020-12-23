@@ -45,7 +45,7 @@
             display: inline-block;
         }
 
-        .mybox > div {
+        .mybox>div {
             display: inline-block;
             margin-right: 0.5em;
         }
@@ -80,6 +80,10 @@
             transform: scale(2);
         }
 
+        input[type='checkbox'] {
+            transform: scale(2);
+        }
+
         .unselectable {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -92,6 +96,7 @@
         .chart_wrap {
             position: relative;
         }
+
         .chart_legend {
             position: absolute;
             left: 15px;
@@ -141,6 +146,10 @@
 
         .darkred {
             color: darkred !important;
+        }
+
+        .gray {
+            color: #999 !important;
         }
 
         #help {
@@ -298,6 +307,10 @@
         .bg_darkred {
             background-color: #700;
         }
+
+        .line_above {
+            border-top: 1px solid #333;
+        }
     </style>
     <script>
         // document.getElementById('dark_mode_css').disabled = true;
@@ -385,7 +398,9 @@
                 </div>
                 <div style="flex:0.3; margin-left: 2em">
                     <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br><br>
-                    <div class="input_wrap"><div style="margin-right: 1em;">Stake<br><span class="span_stake_token">?</span>&nbsp;:</div><input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt"></div><br><br>
+                    <div class="input_wrap">
+                        <div style="margin-right: 1em;">Stake<br><span class="span_stake_token">?</span>&nbsp;:</div><input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt">
+                    </div><br><br>
                     <button class="button bg_darkred" id="simple_stake_bear">⬇️ I am 🐻Bearish</button>
                 </div>
             </div><br><br>
@@ -440,7 +455,8 @@
                             <div style="width: 20%;" class="darkred">🐻Bearish stakes<br><span class="X_bearstake darkred">?</span></div>
                         </div>
                     </div>
-                    <div style="margin-top: 1em; color: #777">Feel free to stake even if you see 0 stake. There will always be stakes when the round is near its end (as many traders will wait till then).</div>
+                    <!-- <div style="margin-top: 1em; color: #777">Feel free to stake even if you see 0 stake. There will always be stakes when the round is near its end (as many traders will wait till then).</div> -->
+                    <div style="margin-top: 1em;" class="gray">If you are on the side with less stakes, or stake earlier, your odds is increased. <a href="https://kitten-finance.medium.com/alphadex-v1-0-improving-the-payoff-model-bf5ba0883055" class="gray" target="_blank">Click for formulas</a> (current factor_stake=<span class="factor_stake">?</span>, factor_time=<span class="factor_time">?</span>).</div>
                     <div style="margin-top: 1.3em; margin-bottom: 1.1em;" class="flexbox all_round_head">
                         <span>🔵 Previous rounds</span>
                     </div>
@@ -452,7 +468,7 @@
                             <button class="button read_more_epochs" style="flex:1">Loading...</button>
                         </div>
                         <div>
-                            Commission = <span id="fee_percent">?</span> % (only charged on profits).
+                            Commission = <span class="fee_percent">?</span> % (only charged on profits).
                         </div>
                     </div>
                 </div>
@@ -489,6 +505,57 @@
                     <br><br>There are always 3 rounds in a day: UTC 0:00~8:00, 8:00~16:00, 16:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
                     <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~8:00, and next round is still UTC 8:00~16:00.
                 </div>
+                <div class="panel div_pool" pool_id="1">
+                    <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
+                        <span>🐂 Auto-staking vault #1 : BULLISH (stake <span class="round_percent">?</span> % every round)</span>
+                        <span style="font-size: 80%; font-weight: normal; color: #777"></span>
+                    </div>
+                    <div class="mybox">
+                        <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
+                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH (might be more expensive than Uniswap)</button></div>
+                    </div>
+                    <div class="pool_info" style="margin-top: 1em;">reading vault status...</div>
+                    <div class="mybox" style="margin-top: 1em">
+                        <div class="input_wrap"><input placeholder="Share amount" class="input sell_pool_amt" style="width: 120px"></div>
+                        <div><button class="button pool_withdraw" style="flex:1">Sell vault shares to ETH + stakes</button></div>
+                        receive stakes :&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_0" checked> round <span class="sell_pool_stake_0_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_1" checked> round <span class="sell_pool_stake_1_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_2" checked> round <span class="sell_pool_stake_2_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="pool_your_info" style="margin-top: 1em;">reading vault status...</div>
+                    <div style="height: 1em;"> </div>
+                    <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
+                    <!-- <br><br><div class="line_above"></div><br>
+                    <div class="mybox">
+                        <div class="input_wrap"><input placeholder="Payoff round" class="input pool_payoff_round" style="width: 120px"></div>
+                        <div><button class="button pool_auto_action" style="flex:1">Manual Payoff (in case of problems) + Stake</button></div>
+                    </div> -->
+                    <div class="pool_log"></div>
+                </div>
+                <div class="panel div_pool" pool_id="2">
+                    <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
+                        <span>🐻 Auto-staking vault #2 : BEARISH (stake <span class="round_percent">?</span> % every round)</span>
+                        <span style="font-size: 80%; font-weight: normal; color: #777"></span>
+                    </div>
+                    <div class="mybox">
+                        <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
+                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH (might be more expensive than Uniswap)</button></div>
+                    </div>
+                    <div class="pool_info" style="margin-top: 1em;">reading vault status...</div>
+                    <div class="mybox" style="margin-top: 1em">
+                        <div class="input_wrap"><input placeholder="Share amount" class="input sell_pool_amt" style="width: 120px"></div>
+                        <div><button class="button pool_withdraw" style="flex:1">Sell vault shares to ETH + stakes</button></div>
+                        receive stakes :&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_0" checked> round <span class="sell_pool_stake_0_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_1" checked> round <span class="sell_pool_stake_1_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" class="sell_pool_stake_2" checked> round <span class="sell_pool_stake_2_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="pool_your_info" style="margin-top: 1em;">reading vault status...</div>
+                    <div style="height: 1em;"> </div>
+                    <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
+                    <div class="pool_log"></div>
+                </div>                
             </div>
             <div id="sidebar" style="display: flex; flex-direction: column;">
                 <div class="mybox panel">
@@ -508,15 +575,19 @@
                     <div class="input_wrap" style="margin-top:1.3em"><input placeholder="amount" class="input stake_amt" style="width: 120px"></div>
                     <div><button class="button" id="add_stake">Stake&nbsp;<span class="span_stake_token">?</span></button></div>
                     <div style="margin-top:1em">You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask<span class="vault_only">, <span class="vault_amt">?</span> <span class="span_stake_token">?</span> in Vault</span>.</div>
-                    <div style="margin-top:1em; color: #777">Stake the amount you'd like to risk. There is no need to consider the amount of stakes on both sides.</div>
+                    <!-- <div style="margin-top:1em; color: #777">Stake the amount you'd like to risk.</div> -->
                 </div>
-                <div class="vault_only"><div class="mybox panel">
-                    <div><span>Deposit <span id="stake_token_name">?</span> in Vault first, to save gas when staking: </span></div>
-                    <div style="margin-top:1em" class="input_wrap"><input placeholder="amount" class="input input_vault_amt" style="width: 120px"></div>
-                    <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
-                    <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
-                    <div style="margin-top:1em; color: #777"><div class="buy_weth_txt">Swap between ETH and WETH on <a style="color: #777" href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div></div>
-                </div></div>
+                <div class="vault_only">
+                    <div class="mybox panel">
+                        <div><span>Deposit <span id="stake_token_name">?</span> in Vault first, to save gas when staking: </span></div>
+                        <div style="margin-top:1em" class="input_wrap"><input placeholder="amount" class="input input_vault_amt" style="width: 120px"></div>
+                        <div><button class="button" style="flex:1" id="vault_deposit">Vault deposit</button></div>
+                        <div><button class="button" style="flex:1" id="vault_withdraw">Vault withdraw</button></div>
+                        <div style="margin-top:1em; color: #777">
+                            <div class="buy_weth_txt">Swap between ETH and WETH on <a style="color: #777" href="https://www.kitten.finance" target="_blank">Kitten.Finance</a> frontpage.</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="mybox panel">
                     <div><span id="market_log_pre"></span><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
                 </div>
