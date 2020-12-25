@@ -502,8 +502,10 @@
                 </div>
                 <div class="panel">
                     AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, similar to a binary option market settled by smart contracts.
-                    <br><br>There are always 3 rounds in a day: UTC 0:00~8:00, 8:00~16:00, 16:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
-                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~8:00, and next round is still UTC 8:00~16:00.
+                    <!-- <br><br>If one round = 8 hours, then there are always 3 rounds in a day: UTC 0:00~8:00, 8:00~16:00, 16:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
+                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~8:00, and next round is still UTC 8:00~16:00. -->
+                    <br><br>If one round = 12 hours, then there are always 2 rounds in a day: UTC 0:00~12:00, 12:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
+                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~12:00, and next round is still UTC 12:00~0:00.
                 </div>
                 <div class="panel div_pool" pool_id="1">
                     <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
