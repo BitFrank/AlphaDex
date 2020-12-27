@@ -326,7 +326,7 @@
                 <p>
                     <a href="javascript:void(0);" onclick="color_theme_switch()">Dark / Light Mode</a>
                 </p>
-                <p><a href="https://www.alphadex.org/core_eth/" target="_blank">Switch to CORE-ETH</a></p>
+                <p><a href="https://kitten-finance.medium.com/" target="_blank">Medium Essay</a></p>
                 <p>a <a href="https://www.kitten.finance" target="_blank" style="text-decoration: underline;">kitten.finance</a> product</p>
             </div>
         </div>
@@ -418,6 +418,7 @@
         <div style="border-top: 1px solid #777; border-bottom: 1px solid #777; margin-bottom: 8em;">
             <div class="flexbox" style="padding: 0.5em 30%; font-size: 125%">
                 <div>&uarr; Simple UI</div>
+                <div class="green">TVL = <span class="tvl_eth">?</span> ETH</div>
                 <div>&darr; Advanced UI & Collect payoffs</div>
             </div>
         </div>
@@ -470,7 +471,7 @@
                             <button class="button read_more_epochs" style="flex:1">Loading...</button>
                         </div>
                         <div>
-                            Commission = <span class="fee_percent">?</span> % (only charged on profits).
+                            Commission = <span class="fee_percent">?</span> % (only charged on profits). <span class="gray">&nbsp;&nbsp;&nbsp;Accumulated <span class="fee_total">?</span> ETH (for $DEX buybacks).</span>
                         </div>
                     </div>
                 </div>
@@ -502,21 +503,15 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="panel">
-                    AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, similar to a binary option market settled by smart contracts.
-                    <!-- <br><br>If one round = 8 hours, then there are always 3 rounds in a day: UTC 0:00~8:00, 8:00~16:00, 16:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
-                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~8:00, and next round is still UTC 8:00~16:00. -->
-                    <br><br>If one round = 12 hours, then there are always 2 rounds in a day: UTC 0:00~12:00, 12:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
-                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~12:00, and next round is still UTC 12:00~0:00.
-                </div>
                 <div class="panel div_pool" pool_id="1">
                     <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
-                        <span>🐂 Auto-staking vault #1 : BULLISH (stake <span class="round_percent">?</span> % every round)</span>
+                        <span>🐂 BULL vault (auto-stake <span class="round_percent">?</span> % every round)</span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"></span>
                     </div>
                     <div class="mybox">
                         <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH (might be more expensive than Uniswap)</button></div>
+                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH</button></div>
+                        <span class="gray">protip: buy when all its old stakes are winning.</span> 
                     </div>
                     <div class="pool_info" style="margin-top: 1em;">reading vault status...</div>
                     <div class="mybox" style="margin-top: 1em">
@@ -530,21 +525,17 @@
                     <div class="pool_your_info" style="margin-top: 1em;">reading vault status...</div>
                     <div style="height: 1em;"> </div>
                     <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
-                    <!-- <br><br><div class="line_above"></div><br>
-                    <div class="mybox">
-                        <div class="input_wrap"><input placeholder="Payoff round" class="input pool_payoff_round" style="width: 120px"></div>
-                        <div><button class="button pool_auto_action" style="flex:1">Manual Payoff (in case of problems) + Stake</button></div>
-                    </div> -->
                     <div class="pool_log"></div>
                 </div>
                 <div class="panel div_pool" pool_id="2">
                     <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
-                        <span>🐻 Auto-staking vault #2 : BEARISH (stake <span class="round_percent">?</span> % every round)</span>
+                        <span>🐻 BEAR vault (auto-stake <span class="round_percent">?</span> % every round)</span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"></span>
                     </div>
                     <div class="mybox">
                         <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH (might be more expensive than Uniswap)</button></div>
+                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH</button></div>
+                        <span class="gray">protip: buy when all its old stakes are winning.</span> 
                     </div>
                     <div class="pool_info" style="margin-top: 1em;">reading vault status...</div>
                     <div class="mybox" style="margin-top: 1em">
@@ -559,7 +550,12 @@
                     <div style="height: 1em;"> </div>
                     <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
                     <div class="pool_log"></div>
-                </div>                
+                </div>
+                <div class="panel">
+                    AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, similar to a binary option market settled by smart contracts.
+                    <br><br>If one round = 12 hours, then there are always 2 rounds in a day: UTC 0:00~12:00, 12:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
+                    <br><br>For example, if [Sync] is called at UTC 1:15, then this round is UTC 1:15~12:00, and next round is still UTC 12:00~0:00.
+                </div>
             </div>
             <div id="sidebar" style="display: flex; flex-direction: column;">
                 <div class="mybox panel">
