@@ -7,8 +7,33 @@
     <meta id="viewport" name="viewport" content="width=1500">
     <link rel="stylesheet" href="index.css">
     <style>
+        @font-face {
+            font-family: 'Exo 2';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("font/exo2.woff2") format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url("font/open_sans.woff2") format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
         body {
             background-color: #f7f7f7;
+            font-family: 'Open Sans', sans-serif;
+        }
+        button, input {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .title {
+            font-family: 'Exo 2', sans-serif;
         }
 
         .panel {
@@ -104,7 +129,7 @@
             z-index: 10;
         }
 
-        .xx_winner {
+        .xx_winner, .X_bullstake, .X_bearstake {
             cursor: pointer;
         }
 
@@ -218,6 +243,9 @@
             background-color: #222;
             color: #ddd;
         }
+        .gray {
+            color: #888 !important;
+        }
 
         #main {
             border-right: 1px solid transparent;
@@ -319,7 +347,7 @@
 
 <body>
     <div id="wrap">
-        <div id="header" class="navbar_wrap">
+        <div id="header" class="navbar_wrap title">
             <div class="navbar">
                 <p style="font-size: 30px;"><b>Alpha</b>Dex - α</p>
                 <p id="btn_help">Help & FAQ (click again to hide)</p>
@@ -387,12 +415,12 @@
             </div>
         </div>
         <div id="simple_ui" style="margin-bottom: 6em;">
-            <div style="text-align: center; font-size: 180%; margin: 2em 0; letter-spacing: 0.2em;">
+            <div style="text-align: center; font-size: 200%; margin: 2em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
                 Stake <span class="span_stake_token">(loading...)</span> to be bullish / bearish on <span class="span_market_desc">(loading...)</span>
-                <div style="color: #777; font-size: 60%; margin-top: 1em; letter-spacing: 0.1em;">a binary option market settled by smart contracts</div>
+                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
             </div>
             <div class="flexbox">
-                <div class="chart_wrap" style="margin-top: -0.5em; flex:1">
+                <div class="chart_wrap" style="flex:1">
                     <div class="chart_legend" id="simple_chart_legend"></div>
                     <div id="simple_chart"></div>
                 </div>
@@ -406,20 +434,20 @@
                     <br><div style="text-align: center;" class="gray">Current bearish stakes <span class="bear_stake_now">?</span> ETH</div>
                 </div>
             </div><br><br>
-            <div>
-                You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.<span class="buy_weth_txt">&nbsp;&nbsp;&nbsp; <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH" target="_blank">Get WETH on uniswap.</a></span>&nbsp;&nbsp;&nbsp; You win if you correctly predict the general direction of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span>.
-            </div>
+            <!-- <div>
+                You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.<span class="buy_weth_txt">&nbsp;&nbsp;&nbsp; <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH" target="_blank">Get WETH on uniswap.</a></span> 
+            </div> -->
             <!-- <br><div>
                 Hint:
             </div> -->
-            <br><br>
+            <!-- <br><br> -->
             <div id="log2"></div>
         </div>
         <div style="border-top: 1px solid #777; border-bottom: 1px solid #777; margin-bottom: 8em;">
             <div class="flexbox" style="padding: 0.5em 30%; font-size: 125%">
-                <div>&uarr; Simple UI</div>
+                <div>&uarr; Manual staking</div>
                 <div class="green">TVL = <span class="tvl_eth">(loading...)</span> ETH</div>
-                <div>&darr; Auto-staking vaults / Payoff</div>
+                <div>&darr; Payoff & Auto-staking vaults</div>
             </div>
         </div>
         <div id="main-wrap" style="min-height: 88vh;">
@@ -505,7 +533,7 @@
                 </div>
                 <div class="panel div_pool" pool_id="1">
                     <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
-                        <span>🐂 BULL vault (auto-stake <span class="round_percent">?</span> % every round)</span>
+                        <span class="pool_name"></span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"></span>
                     </div>
                     <div class="mybox">
@@ -527,30 +555,7 @@
                     <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
                     <div class="pool_log"></div>
                 </div>
-                <div class="panel div_pool" pool_id="2">
-                    <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
-                        <span>🐻 BEAR vault (auto-stake <span class="round_percent">?</span> % every round)</span>
-                        <span style="font-size: 80%; font-weight: normal; color: #777"></span>
-                    </div>
-                    <div class="mybox">
-                        <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH</button></div>
-                        <span class="gray">protip: buy when all its old stakes are winning, for better entry prices.</span> 
-                    </div>
-                    <div class="pool_info" style="margin-top: 1em;">reading vault status...</div>
-                    <div class="mybox" style="margin-top: 1em">
-                        <div class="input_wrap"><input placeholder="Share amount" class="input sell_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_withdraw" style="flex:1">Sell vault shares to ETH + stakes</button></div>
-                        receive stakes :&nbsp;
-                        <input type="checkbox" class="sell_pool_stake_0" checked> round <span class="sell_pool_stake_0_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" class="sell_pool_stake_1" checked> round <span class="sell_pool_stake_1_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" class="sell_pool_stake_2" checked> round <span class="sell_pool_stake_2_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <div class="pool_your_info" style="margin-top: 1em;">reading vault status...</div>
-                    <div style="height: 1em;"> </div>
-                    <div><span class="gray">If some of the stakes look hopeless, you can choose to not receive them, and that can save some gases.</span></div>
-                    <div class="pool_log"></div>
-                </div>
+                <div id="div_pool_end_dummy"></div>
                 <div class="panel">
                     AlphaDex is a decentralized derivative market and liquidity aggregator. You are looking at its first function, similar to a binary option market settled by smart contracts.
                     <br><br>If one round = 12 hours, then there are always 2 rounds in a day: UTC 0:00~12:00, 12:00~0:00. If [Sync] is not called at the desired start time, then the start time is delayed, however it won't affect the start time of next round.
