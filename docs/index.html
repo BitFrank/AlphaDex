@@ -203,7 +203,7 @@
             display: inline-block;
         } */
 
-        .navbar a {
+        .navbar a, .pool_name a {
             text-decoration: none;
         }
 
@@ -417,7 +417,7 @@
         <div id="simple_ui" style="margin-bottom: 6em;">
             <div style="text-align: center; font-size: 200%; margin: 2em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
                 <div style="font-weight: bold;">Stake <span class="span_stake_token">(loading...)</span> to be bullish / bearish on <span class="span_market_desc">(loading...)</span></div>
-                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
+                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;" class="gray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
             </div><br>
             <div class="flexbox">
                 <div class="chart_wrap" style="flex:1">
@@ -443,11 +443,15 @@
             <!-- <br><br> -->
             <div id="log2"></div>
         </div>
-        <div style="border-top: 1px solid #777; border-bottom: 1px solid #777; margin-bottom: 8em;">
-            <div class="flexbox" style="padding: 0.5em 20%; font-size: 125%">
-                <div>&uarr; Manual staking</div>
-                <div class="green">TVL = <span class="tvl_eth">(loading...)</span> ETH</div>
-                <div>&darr; Payoff & Auto-staking vaults</div>
+        <div style="margin-bottom: 8em;" class="title">
+            <div class="flexbox" style="padding: 0.5em 0; font-size: 125%">
+                <div style="flex:1" class="line_above"></div>
+                <div style="padding: 0 1em">&uarr; Manual staking</div>
+                <div style="flex:1" class="line_above"></div>
+                <div class="green" style="padding: 0 1em">TVL = <span class="tvl_eth">(loading...)</span> ETH</div>
+                <div style="flex:1" class="line_above"></div>
+                <div style="padding: 0 1em">&darr; Payoff & Auto-staking vaults</div>
+                <div style="flex:1" class="line_above"></div>
             </div>
         </div>
         <div id="main-wrap">
@@ -467,7 +471,7 @@
                 </div>
                 <div class="panel" id="all_round">
                     <div style="margin-bottom: 0.5em;" class="flexbox all_round_head">
-                        <span>🟢 Current round</span>
+                        <span class="title">🟢 Current round</span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"><span id="next_round_time"></span></span>
                         <span style="font-size: 80%; font-weight: normal; color: #777">One round = <span id="market_epoch_period">?</span></span>
                         <span class="div_read_more_epochs" style="min-height: 50px;">
@@ -489,7 +493,7 @@
                     <!-- <div style="margin-top: 1em; color: #777">Feel free to stake even if you see 0 stake. There will always be stakes when the round is near its end (as many traders will wait till then).</div> -->
                     <div style="margin-top: 1em;" class="gray">If you are on the side with less stakes, or stake earlier, your odds is increased. <a href="https://kitten-finance.medium.com/alphadex-v1-0-improving-the-payoff-model-bf5ba0883055" class="gray" target="_blank">Click for formulas</a> (current factor_stake=<span class="factor_stake">?</span>, factor_time=<span class="factor_time">?</span>).</div>
                     <div style="margin-top: 1.3em; margin-bottom: 1.1em;" class="flexbox all_round_head">
-                        <span>🔵 Previous rounds</span>
+                        <span class="title">🔵 Previous rounds</span>
                     </div>
                     <div id="div_rounds_old">
                     </div>
@@ -536,7 +540,7 @@
                 </div>
                 <div class="panel div_pool" pool_id="1">
                     <div style="margin-bottom: 0.7em;" class="flexbox all_round_head">
-                        <span class="pool_name"></span>
+                        <span class="pool_name title"></span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"></span>
                     </div>
                     <div class="mybox">
