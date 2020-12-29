@@ -63,7 +63,9 @@
 
         #sidebar {
             flex: 0 1 30%;
-            background: #eee;
+            /* background: #eee;  */
+            background: #f7f7f7;
+            padding-left: 0;
         }
 
         .mybox {
@@ -284,8 +286,9 @@
         }
 
         #sidebar {
-            background-color: #1a1a1a;
-            color: #ccc;
+            /* background-color: #1a1a1a; */
+            background-color: #222;
+            /* color: #ccc; */
         }
 
         .emphasize {
@@ -414,11 +417,11 @@
                 </ul>
             </div>
         </div>
-        <div id="simple_ui" style="margin-bottom: 6em;">
-            <div style="text-align: center; font-size: 200%; margin: 2em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
+        <div id="simple_ui">
+            <div style="text-align: center; font-size: 200%; margin: 1.5em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
                 <div style="font-weight: bold;">Stake <span class="span_stake_token">(loading...)</span> to be bullish / bearish on <span class="span_market_desc">(loading...)</span></div>
                 <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;" class="gray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
-            </div><br>
+            </div>
             <div class="flexbox">
                 <div class="chart_wrap" style="flex:1">
                     <div class="chart_legend" id="simple_chart_legend"></div>
@@ -433,7 +436,7 @@
                     <button class="button bg_darkred" id="simple_stake_bear">⬇️ I am 🐻Bearish</button>
                     <br><div style="text-align: center;" class="gray">Current bearish stakes <span class="bear_stake_now">?</span> ETH</div>
                 </div>
-            </div><br><br>
+            </div><br>
             <!-- <div>
                 You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.<span class="buy_weth_txt">&nbsp;&nbsp;&nbsp; <a href="https://app.uniswap.org/#/swap?inputCurrency=ETH" target="_blank">Get WETH on uniswap.</a></span> 
             </div> -->
@@ -441,9 +444,10 @@
                 Hint:
             </div> -->
             <!-- <br><br> -->
-            <div id="log2"></div>
+            <div id="log2"></div><br>
         </div>
-        <div style="margin-bottom: 8em;" class="title">
+        <div class="line_above">&nbsp;</div>
+        <!-- <div style="margin-bottom: 8em;" class="title">
             <div class="flexbox" style="padding: 0.5em 0; font-size: 125%">
                 <div style="flex:3" class="line_above"></div>
                 <div style="padding: 0 1em">&uarr;&nbsp;&nbsp;Manual staking</div>
@@ -453,29 +457,23 @@
                 <div style="padding: 0 1em">&darr;&nbsp;&nbsp;Payoff & Auto-staking vaults</div>
                 <div style="flex:3" class="line_above"></div>
             </div>
-        </div>
+        </div> -->
         <div id="main-wrap">
             <div id="main">
-                <div class="panel">
+                <div class="panel" style="display: none;">
                     <div class="flexbox">
                         <div>You are speculating on <b class="green"><span class="span_market_desc">?</span></b></div>
-                        <div style="display: none;"><select class="input_market" size="1" style="width: 200px"></select></div>
                         <!-- <div><button class="button" style="flex:1" id="trade_uniswap">Trade on uniswap</button></div> -->
                         <div>Current price: <span class="price_now">?</span></div>
-                        <div><button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button></div>
-                    </div>
-                    <div class="chart_wrap" style="margin-top: 0.9em">
-                        <div class="chart_legend" id="div_chart_legend"></div>
-                        <div id="div_chart"></div>
                     </div>
                 </div>
+                <div style="display: none;"><select class="input_market" size="1" style="width: 200px"></select></div>
                 <div class="panel" id="all_round">
                     <div style="margin-bottom: 0.5em;" class="flexbox all_round_head">
                         <span class="title">🟢 Current round</span>
                         <span style="font-size: 80%; font-weight: normal; color: #777"><span id="next_round_time"></span></span>
-                        <span style="font-size: 80%; font-weight: normal; color: #777">One round = <span id="market_epoch_period">?</span></span>
-                        <span class="div_read_more_epochs" style="min-height: 50px;">
-                            <button class="button read_more_epochs">Loading...</button>
+                        <span style="min-height: 50px;">
+                            <button class="button" style="flex:1" id="sync_market">Sync contract & start a new round</button>
                         </span>
                     </div>
                     <div id="div_round_latest">
@@ -490,16 +488,19 @@
                             <div style="width: 20%;" class="darkred">🐻Bearish stakes<br><span class="X_bearstake darkred">?</span></div>
                         </div>
                     </div>
-                    <!-- <div style="margin-top: 1em; color: #777">Feel free to stake even if you see 0 stake. There will always be stakes when the round is near its end (as many traders will wait till then).</div> -->
                     <div style="margin-top: 1em;" class="gray">If you are on the side with less stakes, or stake earlier, your odds is increased. <a href="https://kitten-finance.medium.com/alphadex-v1-0-improving-the-payoff-model-bf5ba0883055" class="gray" target="_blank">Click for formulas</a> (current factor_stake=<span class="factor_stake">?</span>, factor_time=<span class="factor_time">?</span>).</div>
                     <div style="margin-top: 1.3em; margin-bottom: 1.1em;" class="flexbox all_round_head">
                         <span class="title">🔵 Previous rounds</span>
+                        <span style="font-size: 80%; font-weight: normal; color: #777">One round = <span id="market_epoch_period">?</span></span>
+                        <div>
+                            <button class="button read_more_epochs" style="flex:1">Loading...</button>
+                        </div>
                     </div>
                     <div id="div_rounds_old">
                     </div>
                     <br>
                     <div class="mybox" style="width: 100%">
-                        <div class="div_read_more_epochs">
+                        <div>
                             <button class="button read_more_epochs" style="flex:1">Loading...</button>
                         </div>
                         <div>
@@ -567,8 +568,8 @@
             </div>
             <div id="sidebar" style="display: flex; flex-direction: column;">
                 <div class="mybox panel">
-                    Are you bullish or bearish on <span class="span_market_desc">market</span>? Stake to speculate.
                     <!-- <div><span>Speculate on <b>TWAP of round <span class="cur_epoch_add_2">?</span> vs round <span class="cur_epoch_add_1">?</span></b> :</span></div> -->
+                    <!-- Are you bullish or bearish on <span class="span_market_desc">market</span>? Stake to speculate.
                     <div class="vault_only">
                         <div style="margin-top:1.3em">
                             <input type="radio" name="stake_use_vault" value="0" checked>&nbsp;&nbsp;Stake from MetaMask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -581,8 +582,9 @@
                     </div>
                     <br>
                     <div class="input_wrap" style="margin-top:1.3em"><input placeholder="amount" class="input stake_amt" style="width: 120px"></div>
-                    <div><button class="button" id="add_stake">Stake&nbsp;<span class="span_stake_token">?</span></button></div>
-                    <div style="margin-top:1em">You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask<span class="vault_only">, <span class="vault_amt">?</span> <span class="span_stake_token">?</span> in Vault</span>.</div>
+                    <div><button class="button" id="add_stake">Stake&nbsp;<span class="span_stake_token">?</span></button></div> -->
+                    <div class="green">TVL = <span class="tvl_eth">(loading...)</span> ETH</div>
+                    <div>You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask<span class="vault_only">, <span class="vault_amt">?</span> <span class="span_stake_token">?</span> in Vault</span>.</div>
                     <!-- <div style="margin-top:1em; color: #777">Stake the amount you'd like to risk.</div> -->
                 </div>
                 <div class="vault_only">
