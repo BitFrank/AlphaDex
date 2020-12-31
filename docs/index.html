@@ -178,6 +178,9 @@
         .gray {
             color: #999 !important;
         }
+        .lightgray {
+            color: #777 !important;
+        }
 
         #help {
             line-height: 2;
@@ -247,6 +250,9 @@
         }
         .gray {
             color: #888 !important;
+        }
+        .lightgray {
+            color: #999 !important;
         }
 
         #main {
@@ -420,7 +426,7 @@
         <div id="simple_ui">
             <div style="text-align: center; font-size: 200%; margin: 1.5em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
                 <div style="font-weight: bold;">Stake <span class="span_stake_token">(loading...)</span> to be bullish / bearish on <span class="span_market_desc">(loading...)</span></div>
-                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;" class="gray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
+                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;" class="lightgray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
             </div>
             <div class="flexbox">
                 <div class="chart_wrap" style="flex:1">
@@ -428,13 +434,13 @@
                     <div id="simple_chart"></div>
                 </div>
                 <div style="flex:0.3; margin-left: 2em">
-                    <div style="text-align: center;" class="gray">Current bullish stakes <span class="bull_stake_now">?</span> ETH</div><br>
+                    <div style="text-align: center;" class="lightgray">Current bullish stakes <span class="bull_stake_now">?</span> ETH</div><br>
                     <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br><br>
                     <div class="input_wrap">
                         <div style="margin-right: 1em;">Stake<br><span class="span_stake_token">?</span>&nbsp;:</div><input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt">
                     </div><br><br>
                     <button class="button bg_darkred" id="simple_stake_bear">⬇️ I am 🐻Bearish</button>
-                    <br><div style="text-align: center;" class="gray">Current bearish stakes <span class="bear_stake_now">?</span> ETH</div>
+                    <br><div style="text-align: center;" class="lightgray">Current bearish stakes <span class="bear_stake_now">?</span> ETH</div>
                 </div>
             </div><br>
             <!-- <div>
