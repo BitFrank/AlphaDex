@@ -222,7 +222,7 @@
 
         #simple_stake_bull,
         #simple_stake_bear {
-            height: 90px;
+            height: 70px;
             font-size: 135%;
         }
 
@@ -242,8 +242,16 @@
         .buy_weth_txt {
             display: none;
         }
+
+        .normal {
+            color: #000 !important;
+        }
     </style>
     <style id="dark_mode_css">
+        .normal {
+            color: #ddd !important;
+        }
+
         body {
             background-color: #222;
             color: #ddd;
@@ -434,13 +442,19 @@
                     <div id="simple_chart"></div>
                 </div>
                 <div style="flex:0.3; margin-left: 2em">
-                    <div style="text-align: center;" class="lightgray">Current bullish stakes <span class="bull_stake_now">?</span> ETH</div><br>
-                    <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br><br>
-                    <div class="input_wrap">
+                    <div style="text-align: center; line-height: 1.8;" class="lightgray">
+                        if win: <span class="this_odds_bull_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bull_lose normal">-?</span> %
+                        <br>Current bullish stakes <span class="bull_stake_now normal">?</span> ETH
+                    </div><br>
+                    <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br>
+                    <div class="input_wrap" style="margin: 0.5em 0;">
                         <div style="margin-right: 1em;">Stake<br><span class="span_stake_token">?</span>&nbsp;:</div><input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt">
-                    </div><br><br>
+                    </div><br>
                     <button class="button bg_darkred" id="simple_stake_bear">⬇️ I am 🐻Bearish</button>
-                    <br><div style="text-align: center;" class="lightgray">Current bearish stakes <span class="bear_stake_now">?</span> ETH</div>
+                    <br><div style="text-align: center; line-height: 1.8;" class="lightgray">
+                        Current bearish stakes <span class="bear_stake_now normal">?</span> ETH
+                        <br>if win: <span class="this_odds_bear_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bear_lose normal">-?</span> %
+                    </div>
                 </div>
             </div><br>
             <!-- <div>
