@@ -50,7 +50,7 @@
         }
 
         .navbar_wrap {
-            background: #5A0;
+            background: #492;
         }
 
         .button {
@@ -122,6 +122,8 @@
 
         .chart_wrap {
             position: relative;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .chart_legend {
@@ -129,6 +131,12 @@
             left: 15px;
             top: 10px;
             z-index: 10;
+        }
+
+        .chart_wrap table,
+        th,
+        td {
+            border: 0px !important;
         }
 
         .xx_winner, .X_bullstake, .X_bearstake {
@@ -246,6 +254,11 @@
         .normal {
             color: #000 !important;
         }
+
+        .panel, .chart_wrap {
+            border: 0px;
+            box-shadow: 0 4px 16px 0 rgba(0,0,0,.08);
+        }
     </style>
     <style id="dark_mode_css">
         .normal {
@@ -267,15 +280,13 @@
             border-right: 1px solid transparent;
         }
 
-        #help {
-            background-color: #222;
-            color: #ddd;
-        }
-
         .panel {
             background-color: #111;
             color: #ddd;
-            border-color: #333;
+        }
+
+        .panel, .chart_wrap {
+            box-shadow: 0 4px 16px 0 rgba(0,0,0,.2);
         }
 
         a:link,
@@ -368,10 +379,13 @@
             <div class="navbar">
                 <p style="font-size: 30px;"><b>Alpha</b>Dex - α</p>
                 <p id="btn_help">Help & FAQ (click again to hide)</p>
-                <p>
-                    <a href="javascript:void(0);" onclick="color_theme_switch()">Dark / Light Mode</a>
-                </p>
                 <p><a href="https://kitten-finance.medium.com/" target="_blank">Medium Essays</a></p>
+                <p style="padding-top:6px">
+                    <a style="text-decoration: none;" href="javascript:void(0);" onclick="color_theme_switch()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun ficon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon ficon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </a>
+                </p>
                 <p>a <a href="https://www.kitten.finance" target="_blank" style="text-decoration: underline;">kitten.finance</a> product</p>
             </div>
         </div>
