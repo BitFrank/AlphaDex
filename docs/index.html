@@ -331,8 +331,12 @@
         }
 
         .navbar_wrap {
-            background-color: #040;
-            color: #ddd;
+            background-color: #111;
+            color: #ccc;
+        }
+
+        #navbar_title {
+            color: #2a0;
         }
 
         .input {
@@ -377,7 +381,7 @@
     <div id="wrap">
         <div id="header" class="navbar_wrap title">
             <div class="navbar">
-                <p style="font-size: 30px;"><b>Alpha</b>Dex - α</p>
+                <p style="font-size: 30px;" id="navbar_title"><b>Alpha</b>Dex - α</p>
                 <p id="btn_help">Help & FAQ (click again to hide)</p>
                 <p><a href="https://kitten-finance.medium.com/" target="_blank">Medium Essays</a></p>
                 <p style="padding-top:6px">
@@ -436,7 +440,7 @@
                 <li>There shall be at least 1 trade in each round. Or you cannot [Sync] because there is no change in price.</li> -->
                 <li><b>In the future KittenSwap there's no need to manually sync.</b> There are many more functions in AlphaDex, and KittenSwap will provide the best supports for them.</li>
             </ul>
-            <div class="vault_only">
+            <div class="vault_only" style="display: none;">
                 <b>On Contract Safety:</b>
                 <ul type="round">
                     <li>There are two methods to stake in AlphaDex: (1) MetaMask ==[Stake]=> AlphaDex ==[Payoff]=> MetaMask. (2) Vault ==[Stake]=> AlphaDex ==[Payoff]=> Vault.</li>
@@ -675,7 +679,6 @@
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/ethers-5.0.umd.min.js"></script>
     <script type="text/javascript" src="js/helper.js"></script>
-    <script type="text/javascript" src="js/contract.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <script>
         var clicky_site_ids = clicky_site_ids || [];
