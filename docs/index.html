@@ -371,6 +371,23 @@
         .line_above {
             border-top: 1px solid #333;
         }
+
+        #net_select button {
+            background: inherit;
+            color: white;
+            border: 1px solid #444;
+            display: inline-block;
+            padding: 0.5em;
+            height: auto;
+        }
+
+        #net_select button:hover {
+            border: 1px solid #0c0;
+        }
+
+        #net_select button.selected {
+            background: #070;
+        }
     </style>
     <script>
         // document.getElementById('dark_mode_css').disabled = true;
@@ -451,8 +468,9 @@
         </div>
         <div id="simple_ui">
             <div style="text-align: center; font-size: 200%; margin: 1.5em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
-                <div style="font-weight: bold;">Stake <span class="span_stake_token">(loading...)</span> to be bullish / bearish on <span class="span_market_desc">(loading...)</span></div>
-                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.1em;" class="lightgray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span></div>
+                <div style="font-weight: bold;">Are you bullish or bearish on <span class="span_market_desc">(loading...)</span>?</div>
+                <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.0em;" class="lightgray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span>. <span id="market_log_pre"></span></div>
+                <div id="net_select" style="display: flex; margin-top: 1em; width: 24rem; margin: 1em auto 0 auto;"><button class="button" net="ETH">ETH mainnet</button><button class="button" net="BSC">BSC mainnet</button></div>
             </div>
             <div class="flexbox">
                 <div class="chart_wrap" style="flex:1">
@@ -461,17 +479,17 @@
                 </div>
                 <div style="flex:0.3; margin-left: 2em">
                     <div style="text-align: center; line-height: 1.8;" class="lightgray">
-                        if win: <span class="this_odds_bull_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bull_lose normal">-?</span> %
-                        <br>Current bullish stakes <span class="bull_stake_now normal">?</span> ETH
+                        <span class="this_odds_bull" style="display: none;">if win: <span class="this_odds_bull_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bull_lose normal">-?</span> %</span>
+                        <br>Current bullish stakes <span class="bull_stake_now normal">?</span> <span class="netToken"></span>
                     </div><br>
-                    <button class="button bg_green" id="simple_stake_bull">⬆️ I am 🐂Bullish</button><br>
+                    <button class="button bg_green" id="simple_stake_bull">🐂Bullish on&nbsp;<span class="span_market_desc">(loading...)</span></button><br>
                     <div class="input_wrap" style="margin: 0.5em 0;">
                         <div style="margin-right: 1em;">Stake<br><span class="span_stake_token">?</span>&nbsp;:</div><input placeholder="amount" class="input stake_amt" style="width: 100%" id="simple_stake_amt">
                     </div><br>
-                    <button class="button bg_darkred" id="simple_stake_bear">⬇️ I am 🐻Bearish</button>
+                    <button class="button bg_darkred" id="simple_stake_bear">🐻Bearish on&nbsp;<span class="span_market_desc">(loading...)</span></button>
                     <br><div style="text-align: center; line-height: 1.8;" class="lightgray">
-                        Current bearish stakes <span class="bear_stake_now normal">?</span> ETH
-                        <br>if win: <span class="this_odds_bear_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bear_lose normal">-?</span> %
+                        Current bearish stakes <span class="bear_stake_now normal">?</span> <span class="netToken"></span>
+                        <span class="this_odds_bear" style="display: none;"><br>if win: <span class="this_odds_bear_win normal">+?</span> % &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if lose: <span class="this_odds_bear_lose normal">-?</span> %
                     </div>
                 </div>
             </div><br>
@@ -490,7 +508,7 @@
                 <div style="flex:3" class="line_above"></div>
                 <div style="padding: 0 1em">&uarr;&nbsp;&nbsp;Manual staking</div>
                 <div style="flex:1" class="line_above"></div>
-                <div class="green" style="padding: 0 1em">TVL = <span class="tvl_eth">(loading...)</span> ETH</div>
+                <div class="green" style="padding: 0 1em">TVL = <span class="tvl_eth">(loading...)</span> <span class="netToken"></span></div>
                 <div style="flex:1" class="line_above"></div>
                 <div style="padding: 0 1em">&darr;&nbsp;&nbsp;Payoff & Auto-staking vaults</div>
                 <div style="flex:3" class="line_above"></div>
@@ -584,7 +602,7 @@
                     </div>
                     <div class="mybox">
                         <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using ETH</button></div>
+                        <div><button class="button pool_deposit" style="flex:1">Buy vault shares using&nbsp;<span class="netToken"></span></button></div>
                         <!-- <span class="gray">protip: buy when round <span class="cur_epoch_minus_1">?</span> and <span class="cur_epoch_minus_2">?</span> stakes are winning, for better entry prices.</span>  -->
                         <span class="gray">PROTIP: Enter vault when all its stakes are winning, <a href="https://kitten-finance.medium.com/alphadex-v2-0-preview-2-from-vault-shares-to-synthesized-leveraged-tokens-114867e12087" class="gray" target="_blank">for better entry prices</a>.</span> 
                     </div>
@@ -593,7 +611,7 @@
                     <div class="pool_your_info" style="margin-top: 1em;">reading vault status...</div>
                     <div class="mybox" style="margin-top: 1em">
                         <div class="input_wrap"><input placeholder="Share amount" class="input sell_pool_amt" style="width: 120px"></div>
-                        <div><button class="button pool_withdraw" style="flex:1">Sell vault shares to ETH + stakes</button></div>
+                        <div><button class="button pool_withdraw" style="flex:1">Sell vault shares to&nbsp;<span class="netToken"></span>&nbsp;+ stakes</button></div>
                         receive stakes :&nbsp;
                         <input type="checkbox" class="sell_pool_stake_0" checked> round <span class="sell_pool_stake_0_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="checkbox" class="sell_pool_stake_1" checked> round <span class="sell_pool_stake_1_round">X</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -641,7 +659,7 @@
                 </div>
                 <div class="mybox panel">
                     <div>You have <span class="wallet_amt">?</span> <span class="span_stake_token">?</span> in MetaMask.</div><br>
-                    <div><span id="market_log_pre"></span><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
+                    <div><span id="market_log">initializing...</span><span id="market_log_time"></span></div>
                 </div>
                 <div id="log"></div>
                 <div class="panel">
