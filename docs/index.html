@@ -468,10 +468,13 @@
         </div>
         <div id="simple_ui">
             <div style="text-align: center; font-size: 200%; margin: 1.5em 0 1.5em 0; letter-spacing: 0.2em;" class="title">
-                <div style="font-weight: bold;">Are you bullish or bearish on <span class="span_market_desc">(loading...)</span>?</div>
+                <div style="font-weight: bold;">Are you bullish or bearish on <span class="span_market_desc">(loading...)</span> ?</div>
                 <div style="font-size: 55%; margin-top: 1.5em; letter-spacing: 0.0em;" class="lightgray">You win if you can predict the trend of <span class="span_market_desc">?</span> in the next <span class="two_rounds_length">(loading...)</span>. <span id="market_log_pre"></span></div>
-                <div id="net_select" style="display: flex; margin-top: 1em; width: 24rem; margin: 1em auto 0 auto;"><button class="button" net="ETH">ETH mainnet</button><button class="button" net="BSC">BSC mainnet</button></div>
-            </div>
+                <div id="net_select" style="display: flex; margin-top: 1em; width: 33rem; margin: 1em auto 0 auto;">
+                    <button class="button" net="ETH">ETH</button>
+                    <button class="button" net="MATIC">Polygon (Matic)</button>
+                    <button class="button" net="BSC">BSC</button></div>
+                </div>
             <div class="flexbox">
                 <div class="chart_wrap" style="flex:1">
                     <div class="chart_legend" id="simple_chart_legend"></div>
@@ -560,7 +563,7 @@
                             <button class="button read_more_epochs" style="flex:1">Loading...</button>
                         </div>
                         <div>
-                            Commission = <span class="fee_percent">?</span> % (only charged on profits). <span class="gray">&nbsp;&nbsp;&nbsp;Accumulated <span class="fee_total">?</span> ETH (for <a href="https://www.kitten.finance" target="_blank">$DEX</a> buybacks).</span>
+                            Commission = <span class="fee_percent">?</span> % (only charged on profits). <span class="gray">&nbsp;&nbsp;&nbsp;Accumulated <span class="fee_total">?</span> <span class="netToken"></span> (for <a href="https://www.kitten.finance" target="_blank">$DEX</a> buybacks).</span>
                         </div>
                     </div>
                 </div>
@@ -601,7 +604,7 @@
                         <span style="font-size: 80%; font-weight: normal; color: #777"></span>
                     </div>
                     <div class="mybox">
-                        <div class="input_wrap"><input placeholder="ETH amount" class="input buy_pool_amt" style="width: 120px"></div>
+                        <div class="input_wrap"><input placeholder="amount" class="input buy_pool_amt" style="width: 120px"></div>
                         <div><button class="button pool_deposit" style="flex:1">Buy vault shares using&nbsp;<span class="netToken"></span></button></div>
                         <!-- <span class="gray">protip: buy when round <span class="cur_epoch_minus_1">?</span> and <span class="cur_epoch_minus_2">?</span> stakes are winning, for better entry prices.</span>  -->
                         <span class="gray">PROTIP: Enter vault when all its stakes are winning, <a href="https://kitten-finance.medium.com/alphadex-v2-0-preview-2-from-vault-shares-to-synthesized-leveraged-tokens-114867e12087" class="gray" target="_blank">for better entry prices</a>.</span> 
